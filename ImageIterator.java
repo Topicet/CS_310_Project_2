@@ -1,26 +1,41 @@
 import java.util.Iterator;
-
+/**
+ * This class implements an iterator for a two-dimensional doubly-linked list.
+ * The iterator can traverse the list either horizontally or vertically.
+ *
+ * @param <T> the type of elements held in this collection
+ */
 public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>{
     private Node<T> currentNode;
     private Direction direction;
 
 
+    /**
+     * Creates a new ImageIterator starting at the head node, with default direction as HORIZONTAL.
+     *
+     * @param head the starting node for the iterator
+     */
     public ImageIterator(Node<T> head){
         this.currentNode = head;
         this.direction = Direction.HORIZONTAL;
     }
 
+    /**
+     * Creates a new ImageIterator starting at the head node, with a specified direction.
+     *
+     * @param head      the starting node for the iterator
+     * @param direction the direction in which to traverse, either HORIZONTAL or VERTICAL
+     */
     public ImageIterator(Node<T> head, Direction direction) {
         this.currentNode = head;
         this.direction = direction;
     }
-    /**
-        1. declare the constructor(s) that are needed based on the implementation of the iterator() methods in class Image
-        2. declare the hasNext() method
-        3. declare the next() method
-        4. you can optionally declare the remove() method and make it throw an UnsupportedOperationException
-    */
 
+    /**
+     * Checks if there are more elements to iterate through.
+     * 
+     * @return true if there are more elements, false otherwise
+     */
     @Override
     public boolean hasNext() {
         if (currentNode == null) {
@@ -36,6 +51,11 @@ public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>
         }
     }
 
+    /**
+     * Returns the next node in the list based on the current direction of traversal.
+     * 
+     * @return the next Node object in the traversal
+     */
     @Override
     public Node<T> next() {
         // Fetches the next node in the direction specified
