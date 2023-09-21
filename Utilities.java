@@ -7,40 +7,57 @@ import java.util.Scanner;
 public final class Utilities
 {
     public static Image<Short> loadImage(String pgmFile){
-        Image myImage = new Image();
+        try (Scanner scanner = new Scanner(new File(pgmFile))) {
 
-        try{
-            Scanner fileScanner = new Scanner(new File(pgmFile));
-            myImage = 
+            // Read the first line to get the PGM format
+            String format = scanner.nextLine();
 
-        }
-
-        catch(FileNotFoundException e){
+            
+            // Read the second line to get the width and height
+            int width = scanner.nextInt();
+            int height = scanner.nextInt();
+            
+            // Initialize the new Image object
+            Image<Short> myImage = new Image<>(width, height);
+            
+            // Initialize an iterator for the image
+            Iterator<Node<Short>> iterator = myImage.iterator();
+            
+            // Use the iterator to give each node a value
+            while (scanner.hasNext() && iterator.hasNext()) {
+                Short pixelValue = scanner.nextShort();
+                iterator.next().setValue(pixelValue);
+            }
+            
+            return myImage;
+        } catch (FileNotFoundException e) {
             throw new RuntimeException("File " + pgmFile + " not found!");
         }
-        /**
-            1. open the text file for reading
-            2. read the first line and verify the type is P2
-            3. read the second line and extract the width and the height of the image
-            4. read the third line but don't use it 
-            5. create an Image<Short> object
-            6. run an enhanced-for loop (or a manual while loop) to get all the nodes from the Image object and use the Node's setter method to set the value for each node
-            7. don't forget to close the file
-        */
 
-
-
-        return myImage;
     }
 
     public static void saveImage(Image<Short> image, String pgmFile){
-        /**
-            1. open the text file for writing
-            2. write P2 which is the type of the image
-            3. write the width and the height of the image separated by a single space
-            4. write 255
-            5. run an enhanced-for loop (or a manual while loop) to get all the nodes from the Image object and write their pixel value to the file
-            6. don't forget to close the file
-        */
+
+        try (PrintWriter writer = new PrintWriter(new File(pgmFile))) {
+            // Write the PGM format, P2 in this case.
+            writer.println("P2");
+            
+            // Write the width and height
+            writer.println(image.getWidth() + " " + image.getHeight());
+
+            // Write the maximum grayscale value which is 255 in this case
+            writer.println("255");
+            
+            // Initialize an iterator for the image
+            Iterator<Node<Short>> iterator = image.iterator();
+            
+            // Iterate through the image and write each pixel value
+            while (iterator.hasNext()) {
+                Short pixelValue = iterator.next().getValue();
+                writer.println(pixelValue);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File " + pgmFile + " not found!");
+        }
     }
 }
