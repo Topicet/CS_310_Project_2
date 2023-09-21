@@ -9,9 +9,8 @@ public final class Utilities
     public static Image<Short> loadImage(String pgmFile){
         try (Scanner scanner = new Scanner(new File(pgmFile))) {
 
-            // Read the first line to get the PGM format
-            String format = scanner.nextLine();
-
+            // Skip the first line with the PGM format
+            scanner.nextLine();
             
             // Read the second line to get the width and height
             int width = scanner.nextInt();

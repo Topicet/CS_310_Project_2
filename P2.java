@@ -40,7 +40,7 @@ public class P2
             System.out.print(iter.next().getValue());
 
         // modify the image and save it to a new file
-        image.getHead().setValue(0);
+        image.getHead().setValue((short) 0);
         Utilities.saveImage(image, args[1]);
     }
 }
