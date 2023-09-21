@@ -683,18 +683,25 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         return equal;
     }
         
+    /**
+     * Creates and returns an ImageIterator object that traverses the image horizontally.
+     *
+     * @return an ImageIterator object with default direction as HORIZONTAL
+     */
     @Override
     public Iterator<Node<T>> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return new ImageIterator<>(head);
     }
 
     /**
-        1. define a constructor that creates the two-dimensional doubly-linked list
-        2. define the three getters as described in the specs
-        3. define the two iterator methods as described in the specs
-        4. define the six image manipulaton methods as described in the specs
-    */
+     * Creates and returns an ImageIterator object that can traverse the image either horizontally or vertically.
+     *
+     * @param dir the direction in which to traverse
+     * @return an ImageIterator object with the specified direction
+     */
+    public Iterator<Node<T>> iterator(Direction dir){
+        return new ImageIterator<>(head, dir);
+    }
 
     //TESTER METHODS ---------------------------------------------------------------------------------//
 
