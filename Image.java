@@ -502,27 +502,32 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
             for (int col = 0; col < this.width; col++) {
                 T maxValue = rowCurrentNode.getValue();
 
-                // Initialize an array to hold the values of all possible neighbors
-                Integer[] neighborValues = new Integer[]{
-                    rowCurrentNode.getLeft() != null ? (Integer) rowCurrentNode.getLeft().getValue() : null,
-                    rowCurrentNode.getRight() != null ? (Integer) rowCurrentNode.getRight().getValue() : null,
-                    rowCurrentNode.getUp() != null ? (Integer) rowCurrentNode.getUp().getValue() : null,
-                    rowCurrentNode.getDown() != null ? (Integer) rowCurrentNode.getDown().getValue() : null,
-                    rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getLeft() != null ? (Integer) rowCurrentNode.getUp().getLeft().getValue() : null,
-                    rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getRight() != null ? (Integer) rowCurrentNode.getUp().getRight().getValue() : null,
-                    rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getLeft() != null ? (Integer) rowCurrentNode.getDown().getLeft().getValue() : null,
-                    rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getRight() != null ? (Integer) rowCurrentNode.getDown().getRight().getValue() : null
-                };
-
-                // Check each neighbor's value and update maxValue if the neighbor's value is greater
-                for (Integer neighborValue : neighborValues) {
-                    if (neighborValue != null) {
-                        if (neighborValue > (Integer) maxValue) {
-                            maxValue = neighborValue;
-                        }
-                    }
+                if (rowCurrentNode.getLeft().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getLeft().getValue();
                 }
-                rowFilteredNode.setValue((T) Integer.valueOf(maxValue));
+                if (rowCurrentNode.getRight().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getRight().getValue();
+                }
+                if (rowCurrentNode.getUp().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getUp().getValue();
+                }
+                if (rowCurrentNode.getDown().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getDown().getValue();
+                }
+                if (rowCurrentNode.getUp().getLeft().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getUp().getLeft().getValue();
+                }
+                if (rowCurrentNode.getUp().getRight().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getUp().getRight().getValue();
+                }
+                if (rowCurrentNode.getDown().getLeft().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getDown().getLeft().getValue();
+                }
+                if (rowCurrentNode.getDown().getRight().getValue().compareTo(maxValue) == 1){
+                    maxValue = rowCurrentNode.getDown().getRight().getValue();
+                }
+                
+                rowFilteredNode.setValue(maxValue);
 
                 // Move to the next node in the current row
                 rowCurrentNode = rowCurrentNode.getRight();
