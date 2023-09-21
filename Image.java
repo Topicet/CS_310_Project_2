@@ -66,25 +66,6 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
        }
     }
 
-    private void print2DLinkedList() {
-        Node<T> rowHead = head;  // Assuming 'firstRow' is the first node of the first row
-
-        System.out.println("-----------------------------------------------------------------------------");
-        while (rowHead != null) {
-            Node<T> current = rowHead;
-            while (current != null) {
-                System.out.print(current.getValue() + "\t");
-                current = current.getRight();  // Move to the next column
-            }
-            System.out.println();  // Newline for the next row
-            rowHead = rowHead.getDown();  // Move to the next row
-        }
-
-        System.out.println("Number of rows - " + this.height);
-        System.out.println("Number of columns - " + this.width);
-        System.out.println("Number of nodes - " + this.width*this.height);
-    }
-
     public void insertRow(int index, T value){
         if(index < 0 || index > height){
             throw new RuntimeException("Index for insertion is invalid, must be between 0 and " + this.height);
@@ -306,15 +287,15 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
     }
         
     public int getHeight() {
-            return height;
-        }
+        return this.height;
+    }
     
     public int getWidth() {
-        return width;
+        return this.width;
     }
     
     public Node<T> getHead() {
-        return head;
+        return this.head;
     }
 
     public int compress() {
@@ -539,79 +520,7 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
             filteredNode = filteredNode.getDown();
         }
         return filteredImage;
-    }
-
-
-    /**
-     * Spend a lot of time writing this but dont think I need it, will keep it here for now.
-     */
-    public void removeBorder1(){
-        if (height < 3 || width < 3) {
-            throw new RuntimeException("The image is too small to remove a border.");
-        }
-    
-        Node<T> currentNode;
-
-        //Removing the top row.
-        currentNode = head;
-        head = currentNode.getDown().getRight();
-
-        setNull(currentNode);
-        currentNode = head;
-
-        setNull(currentNode.getUp());
-        currentNode.setUp(null);
-        
-        while(currentNode.getRight() != null){
-            currentNode = currentNode.getRight();
-
-            setNull(currentNode.getUp());
-            currentNode.setUp(null);
-        }
-
-        //Removing right side column
-        currentNode = currentNode.getLeft();
-
-        setNull(currentNode.getRight());
-        currentNode.setRight(null);
-        
-        while(currentNode.getDown() != null){
-            currentNode = currentNode.getDown();
-
-            setNull(currentNode.getRight());
-            currentNode.setRight(null);
-        }
-
-        //Removing bottom row
-        currentNode = currentNode.getUp();
-
-        setNull(currentNode.getDown());
-        currentNode.setDown(null);
-        
-        while(currentNode.getLeft() != null){
-            currentNode = currentNode.getLeft();
-
-            setNull(currentNode.getDown());
-            currentNode.setDown(null);
-        }
-
-        //Removing the left side column
-        currentNode = currentNode.getRight();
-
-        setNull(currentNode.getLeft());
-        currentNode.setLeft(null);
-        
-        while(currentNode.getUp() != null){
-            currentNode = currentNode.getUp();
-
-            setNull(currentNode.getLeft());
-            currentNode.setLeft(null);
-        }
-
-        // Update the dimensions of the grid
-        this.height -= 2;
-        this.width -= 2;
-    }
+    }    
 
     /**
      * Sets all connections coming from this node to null.
@@ -681,6 +590,25 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         }
     
         return equal;
+    }
+    
+    private void print2DLinkedList() {
+        Node<T> rowHead = head;  // Assuming 'firstRow' is the first node of the first row
+
+        System.out.println("-----------------------------------------------------------------------------");
+        while (rowHead != null) {
+            Node<T> current = rowHead;
+            while (current != null) {
+                System.out.print(current.getValue() + "\t");
+                current = current.getRight();  // Move to the next column
+            }
+            System.out.println();  // Newline for the next row
+            rowHead = rowHead.getDown();  // Move to the next row
+        }
+
+        System.out.println("Number of rows - " + this.height);
+        System.out.println("Number of columns - " + this.width);
+        System.out.println("Number of nodes - " + this.width*this.height);
     }
         
     /**
