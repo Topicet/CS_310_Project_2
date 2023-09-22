@@ -4,8 +4,21 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * The `Utilities` class provides utility methods for reading and writing images from/to files.
+ * This class is designed specifically for handling images with pixel values of type Short and
+ * is not generic.
+ */
 public final class Utilities
 {
+    /**
+     * Reads a PGM image from a file and creates an Image object.
+     * 
+     * @param pgmFile The file path to the PGM image.
+     * @return An Image object representing the image.
+     * @throws RuntimeException If the file doesn't exist or an error occurs during loading.
+     * @see Image
+     */
     public static Image<Short> loadImage(String pgmFile){
         try (Scanner scanner = new Scanner(new File(pgmFile))) {
 
@@ -35,6 +48,14 @@ public final class Utilities
 
     }
 
+    
+    /**
+     * Writes an Image object into a PGM file.
+     * 
+     * @param image    The Image object to be saved.
+     * @param pgmFile  The file path where the image will be saved.
+     * @throws RuntimeException If the file doesn't exist or an error occurs during saving.
+     */
     public static void saveImage(Image<Short> image, String pgmFile){
 
         try (PrintWriter writer = new PrintWriter(new File(pgmFile))) {

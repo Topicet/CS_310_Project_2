@@ -6,7 +6,13 @@ import java.util.Iterator;
  * @param <T> the type of elements held in this collection
  */
 public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>> {
+    /**
+     * The node that is currently active in the iterator.
+     */
     private Node<T> currentNode;
+    /**
+     * The direction of iterator traversal.
+     */
     private Direction direction;
 
 

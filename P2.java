@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
     Do NOT submit this file.
 
@@ -7,10 +9,12 @@
     or implement the other classes -- do not alter this code to make
     it compile, fix the other classes instead.
 */
-import java.util.Iterator;
-
 public class P2
 {
+    /**
+     * Main method.
+     * @param args arguments
+     */
     public static void main(String[] args)
     {
         if (args.length != 2)

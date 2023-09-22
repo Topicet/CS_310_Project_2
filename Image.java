@@ -16,8 +16,13 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
     * This private variable points to the top-left corner of the two-dimensional doubly-linked list.
     */
     private Node<T> head;
-    
+    /**
+     * Height of the 2d grid.
+     */
     private int height;
+    /**
+     * Width of the 2d grid.
+     */
     private int width;
 
     /**
@@ -584,8 +589,8 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
 
     /**
      * Checks if two adjacent columns are equal to one another.
-     * @param upperRowFirstNode The first node in the first column
-     * @param lowerRowFirstNode The first node in the second column
+     * @param firstColumnTopNode The first node in the first column
+     * @param secondColumnTopNode The first node in the second column
      * @return True if the columns equal one another, false otherwise.
      */
     private boolean columnsAreEqual(Node<T> firstColumnTopNode, Node<T> secondColumnTopNode){
@@ -694,79 +699,4 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
     public Iterator<Node<T>> iterator(Direction dir){
         return new ImageIterator<>(head, dir);
     }
-
-    //TESTER METHODS ---------------------------------------------------------------------------------//
-
-    public static void testRemoveFirstColumn() {
-        Image<String> myImage = new Image<>(5, 5);
-        // Assume initially the width is 5
-        myImage.removeColumn(0);
-    
-        // Verify: The width should now be 4
-        if (myImage.getWidth() != 4) {
-            System.out.println("testRemoveFirstColumn FAILED: Width is not 4");
-            return;
-        }
-    
-        // Verify: The head should now point to what was the second column
-        if (myImage.getHead().getRight() == null) {
-            System.out.println("testRemoveFirstColumn FAILED: Head right pointer is null");
-            return;
-        }
-    
-        System.out.println("testRemoveFirstColumn PASSED");
-    }
-    
-    public static void testRemoveLastColumn() {
-        Image<String> myImage = new Image<>(5, 5);
-        // Assume initially the width is 5
-        myImage.removeColumn(4);
-    
-        // Verify: The width should now be 4
-        if (myImage.getWidth() != 4) {
-            System.out.println("testRemoveLastColumn FAILED: Width is not 4");
-            return;
-        }
-        
-        // You would typically also traverse to the last node and verify its 'right' is null
-        
-        System.out.println("testRemoveLastColumn PASSED");
-    }
-    
-    public static void testRemoveFirstRow() {
-        Image<String> myImage = new Image<>(5, 5);
-        // Assume initially the height is 5
-        myImage.removeRow(0);
-    
-        // Verify: The height should now be 4
-        if (myImage.getHeight() != 4) {
-            System.out.println("testRemoveFirstRow FAILED: Height is not 4");
-            return;
-        }
-    
-        // Verify: The head should now point to what was the second row
-        if (myImage.getHead().getDown() == null) {
-            System.out.println("testRemoveFirstRow FAILED: Head down pointer is null");
-            return;
-        }
-    
-        System.out.println("testRemoveFirstRow PASSED");
-    }
-    
-    public static void testRemoveLastRow() {
-        Image<String> myImage = new Image<>(5, 5);
-        // Assume initially the height is 5
-        myImage.removeRow(4);
-    
-        // Verify: The height should now be 4
-        if (myImage.getHeight() != 4) {
-            System.out.println("testRemoveLastRow FAILED: Height is not 4");
-            return;
-        }
-        
-        // You would typically also traverse to the last node in the first column and verify its 'down' is null
-    
-        System.out.println("testRemoveLastRow PASSED");
-    }
-
 }
