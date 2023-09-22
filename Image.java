@@ -1,10 +1,33 @@
 import java.util.Iterator;
 
+/**
+ * The `Image` class represents a two-dimensional doubly-linked list data structure designed
+ * to store and manipulate pixel values in a rectangular grid. Each element in the grid is
+ * represented by a node containing a value of type `T`. This class provides methods to
+ * perform various operations on the image, such as adding/removing rows and columns,
+ * applying filters, and more.
+ * 
+ * @param <T> The type of data stored in each node, must extend Comparable for certain operations.
+ * @see Node
+ * @see ImageIterator
+ */
 public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
+    /**
+    * This private variable points to the top-left corner of the two-dimensional doubly-linked list.
+    */
     private Node<T> head;
+    
     private int height;
     private int width;
 
+    /**
+     * Constructor to build a two-dimensional linked list data structure with the given width and height.
+     * All rows must have the same number of nodes. No values are assigned to the nodes.
+     *
+     * @param width  The width of the Image.
+     * @param height The height of the Image.
+     * @throws RuntimeException If width or height is invalid.
+     */
     public Image(int width, int height) {
         if (width <= 0 || height <= 0) {
             throw new RuntimeException("Height and Width must be greater than 0.");
@@ -52,6 +75,13 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
        }
     }
 
+    /**
+     * Inserts a single row with the same value for all its nodes.
+     *
+     * @param index The index at which to insert the row.
+     * @param value The value to assign to all nodes in the inserted row.
+     * @throws RuntimeException If the index is invalid.
+     */
     public void insertRow(int index, T value){
         if(index < 0 || index > height){
             throw new RuntimeException("Index for insertion is invalid, must be between 0 and " + this.height);
@@ -150,6 +180,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         this.height++;
     }
 
+    /**
+     * Removes a single column from the grid based on its index.
+     *
+     * @param index The index of the column to be removed.
+     * @throws RuntimeException If the index is invalid.
+     */
     public void removeColumn(int index) {
         if(index < 0 || index > width){
             throw new RuntimeException("Index for removal is invalid, must be between 0 and " + this.width);
@@ -208,6 +244,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         this.width--;
     }
 
+    /**
+     * Removes a single row from the grid based on its index.
+     *
+     * @param index The index of the row to be removed.
+     * @throws RuntimeException If the index is invalid.
+     */
     private void removeRow(int index) {
         if (index < 0 || index > height) {
             throw new RuntimeException("Index for deletion is invalid, must be between 0 and " + this.height);
@@ -268,19 +310,39 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         // Decrementing height after removing a row.
         this.height--;
     }
-        
+    
+    /**
+     * Getter method for retrieving the height of the Image.
+     *
+     * @return The height of the Image.
+     */
     public int getHeight() {
         return this.height;
     }
     
+    /**
+     * Getter method for retrieving the width of the Image.
+     *
+     * @return The width of the Image.
+     */
     public int getWidth() {
         return this.width;
     }
     
+    /**
+     * Getter method for retrieving the head of the Image.
+     *
+     * @return The head of the Image.
+     */
     public Node<T> getHead() {
         return this.head;
     }
 
+    /**
+     * Removes adjacent rows or columns with the same values until none remain.
+     *
+     * @return The total number of nodes removed from the image.
+     */
     public int compress() {
         int numberOfRemovedNodes = 0;
         boolean hasBeenCompressed = true;
@@ -324,6 +386,9 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
     }
 
 
+    /**
+     * Adds a border to the image with a width of 1 pixel, copying adjacent pixel values.
+     */
     public void addBorder() {
         
         // Step 1: Add a row at the top
@@ -439,6 +504,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         this.width += 2;
     }
 
+    
+    /**
+     * Removes the border from the image, decreasing height and width by 1 pixel on each side.
+     *
+     * @throws RuntimeException If the image's height or width is too small to support this operation.
+     */
     public void removeBorder(){
         if (height < 3 || width < 3) {
             throw new RuntimeException("The image is too small to remove a border.");
@@ -450,6 +521,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         removeColumn(this.width);
     }
 
+    /**
+     * Creates a new image with the same size as the original, replacing each pixel's value
+     * with the maximum value in its neighborhood.
+     *
+     * @return A new image with max-filtered values.
+     */
     public Image<T> maxFilter(){
         Image<T> filteredImage = new Image<>(this.width, this.height);
 
@@ -505,6 +582,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         return filteredImage;
     }
 
+    /**
+     * Checks if two adjacent columns are equal to one another.
+     * @param upperRowFirstNode The first node in the first column
+     * @param lowerRowFirstNode The first node in the second column
+     * @return True if the columns equal one another, false otherwise.
+     */
     private boolean columnsAreEqual(Node<T> firstColumnTopNode, Node<T> secondColumnTopNode){
         boolean equal = true;
 
@@ -535,6 +618,12 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         return equal;
     }
 
+    /**
+     * Checks if two adjacent rows are equal to one another.
+     * @param upperRowFirstNode The first node in the first row
+     * @param lowerRowFirstNode The first node in the second row
+     * @return True if the rows equal one another, false otherwise.
+     */
     private boolean rowsAreEqual(Node<T> upperRowFirstNode, Node<T> lowerRowFirstNode) {
         boolean equal = true;
     
@@ -564,6 +653,11 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
         return equal;
     }
     
+    /**
+     * Returns a string representation of the Image, useful for debugging.
+     *
+     * @return A string representation of the Image.
+     */
     @Override
     public String toString() {
         Node<T> rowHead = head;  // Assuming 'firstRow' is the first node of the first row
