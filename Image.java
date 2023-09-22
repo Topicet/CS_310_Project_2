@@ -11,7 +11,7 @@ import java.util.Iterator;
  * @see Node
  * @see ImageIterator
  */
-public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
+public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
     /**
     * This private variable points to the top-left corner of the two-dimensional doubly-linked list.
     */
@@ -71,8 +71,8 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
                 currentNode = newNode;
             }
 
-        firstNodeinPriorRow = firstNodeinNewRow;
-       }
+            firstNodeinPriorRow = firstNodeinNewRow;
+        }
     }
 
     /**
@@ -377,8 +377,8 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
                     hasBeenCompressed = true;
                 }
 
-            rowStart = rowStart.getDown();
-            rowIndex++;
+                rowStart = rowStart.getDown();
+                rowIndex++;
             }
         }
 
@@ -627,26 +627,26 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>>{
     private boolean rowsAreEqual(Node<T> upperRowFirstNode, Node<T> lowerRowFirstNode) {
         boolean equal = true;
     
-        Node<T> UpperRowNode = upperRowFirstNode;
+        Node<T> upperRowNode = upperRowFirstNode;
         Node<T> lowerRowNode = lowerRowFirstNode;
     
-        while (UpperRowNode != null && lowerRowNode != null) {
-            T UpperRowNodeValue = UpperRowNode.getValue();
+        while (upperRowNode != null && lowerRowNode != null) {
+            T upperRowNodeValue = upperRowNode.getValue();
             T lowerRowNodeValue = lowerRowNode.getValue();
     
             // If at any point the values are not equal, set 'equal' to false and break out of the loop
-            if (!UpperRowNodeValue.equals(lowerRowNodeValue)) {
+            if (!upperRowNodeValue.equals(lowerRowNodeValue)) {
                 equal = false;
                 break;
             }
     
             // Continue traversing along the row.
-            UpperRowNode = UpperRowNode.getRight();
+            upperRowNode = upperRowNode.getRight();
             lowerRowNode = lowerRowNode.getRight();
         }
     
         // If one row is longer than the other, they can't be equal
-        if (UpperRowNode != null || lowerRowNode != null) {
+        if (upperRowNode != null || lowerRowNode != null) {
             equal = false;
         }
     

@@ -5,7 +5,7 @@ import java.util.Iterator;
  *
  * @param <T> the type of elements held in this collection
  */
-public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>{
+public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>> {
     private Node<T> currentNode;
     private Direction direction;
 
