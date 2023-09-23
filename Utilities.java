@@ -32,14 +32,9 @@ public final class Utilities
             //Skip down to the actual image data.
             scanner.nextLine();
             scanner.nextLine();
-
-            System.out.println("H" + height + "W" + width);
             
             // Initialize the new Image object
             Image<Short> myImage = new Image<>(width, height);
-
-            //Initialize the head node.
-            myImage.getHead().setValue(scanner.nextShort());
             
             // Initialize an iterator for the image
             Iterator<Node<Short>> iterator = myImage.iterator();
@@ -67,13 +62,13 @@ public final class Utilities
 
         try (PrintWriter writer = new PrintWriter(new File(pgmFile))) {
             // Write the PGM format, P2 in this case.
-            writer.println("P2");
+            writer.println("P2\n");
             
             // Write the width and height
-            writer.println(image.getWidth() + " " + image.getHeight());
+            writer.println(image.getWidth() + " " + image.getHeight() + "\n");
 
             // Write the maximum grayscale value which is 255 in this case
-            writer.println("255");
+            writer.println("255\n");
             
             // Initialize an iterator for the image
             Iterator<Node<Short>> iterator = image.iterator();

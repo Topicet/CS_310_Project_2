@@ -14,6 +14,10 @@ public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>
      * The direction of iterator traversal.
      */
     private Direction direction;
+    /**
+     * Keeps track of whether we are at the head node or not.
+     */
+    private boolean atHeadNode = true;
 
 
     /**
@@ -67,6 +71,12 @@ public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>
         // Fetches the next node in the direction specified
         if (!hasNext()) {
             return null;
+        }
+        
+        // If we're at the head node, just return it and update the flag
+        if (atHeadNode) {
+            atHeadNode = false;
+            return currentNode;
         }
 
         if (direction == Direction.HORIZONTAL) {
