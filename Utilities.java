@@ -28,9 +28,18 @@ public final class Utilities
             // Read the second line to get the width and height
             int width = scanner.nextInt();
             int height = scanner.nextInt();
+
+            //Skip down to the actual image data.
+            scanner.nextLine();
+            scanner.nextLine();
+
+            System.out.println("H" + height + "W" + width);
             
             // Initialize the new Image object
             Image<Short> myImage = new Image<>(width, height);
+
+            //Initialize the head node.
+            myImage.getHead().setValue(scanner.nextShort());
             
             // Initialize an iterator for the image
             Iterator<Node<Short>> iterator = myImage.iterator();
@@ -45,9 +54,7 @@ public final class Utilities
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File " + pgmFile + " not found!");
         }
-
     }
-
     
     /**
      * Writes an Image object into a PGM file.

@@ -674,6 +674,7 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
                 myString += current.getValue() + "\t";
                 current = current.getRight();  // Move to the next column
             }
+            myString += "\n";
             rowHead = rowHead.getDown();  // Move to the next row
         }
 

@@ -28,7 +28,7 @@ public class P2
         
         // print the contents -- only if the optional toString() is implemented
         System.out.println(image);
-
+        System.exit(0);
         // run an enhanced-for loop and print all the pixels in a horizontal traversal
         for(Node<Short> node : image)
             System.out.print(node.getValue());
