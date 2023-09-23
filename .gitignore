@@ -1,3 +1,11 @@
 *.class
 .vscode/settings.json
 output.pgm
+compressionTest.pgm
+1x1.pgm
+1x10.pgm
+.gitignore
+insertRowTest.pgm
+.gitignore
+compressionTestAllEqual.pgm
+removeColumnTest.pgm

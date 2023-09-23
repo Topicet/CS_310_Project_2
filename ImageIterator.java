@@ -50,7 +50,8 @@ public class ImageIterator<T extends Comparable<T>> implements Iterator<Node<T>>
     public boolean hasNext() {
         if (currentNode == null) {
             return false;
-        }        
+        }
+
         // For the Horizontal direction, check if there's a node to the right or if it can move down to the next row
         if (direction == Direction.HORIZONTAL) {
             return currentNode.getRight() != null || currentNode.getDown() != null;

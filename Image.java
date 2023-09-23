@@ -192,8 +192,11 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
      * @throws RuntimeException If the index is invalid.
      */
     public void removeColumn(int index) {
-        if(index < 0 || index > width){
-            throw new RuntimeException("Index for removal is invalid, must be between 0 and " + this.width);
+        if(index < 0 || index >= width){
+            throw new RuntimeException("Index for removal is invalid, must be between 0 and " + (this.width - 1));
+        }
+        if(this.width == 1){
+            throw new RuntimeException("Cannot remove column when image width is 1");
         }
         
         // Special case for removing the first column

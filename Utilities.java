@@ -32,17 +32,22 @@ public final class Utilities
             //Skip down to the actual image data.
             scanner.nextLine();
             scanner.nextLine();
-            
+
             // Initialize the new Image object
             Image<Short> myImage = new Image<>(width, height);
             
             // Initialize an iterator for the image
             Iterator<Node<Short>> iterator = myImage.iterator();
-            
-            // Use the iterator to give each node a value
-            while (scanner.hasNext() && iterator.hasNext()) {
-                Short pixelValue = scanner.nextShort();
-                iterator.next().setValue(pixelValue);
+
+            if(height == 1 && width == 1){
+                myImage.getHead().setValue(scanner.nextShort());
+            }
+            else{
+                // Use the iterator to give each node a value
+                while (scanner.hasNext() && iterator.hasNext()) {
+                    Short pixelValue = scanner.nextShort();
+                    iterator.next().setValue(pixelValue);
+                }
             }
             
             return myImage;
