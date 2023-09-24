@@ -549,57 +549,57 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
             Node<T> rowFilteredNode = filteredNode;
 
             for (int col = 0; col < this.width; col++) {
-                T maxValue = rowCurrentNode.getValue();
+                Node<T> maxValueNode = rowCurrentNode;
 
                 if(rowCurrentNode.getLeft() != null && rowCurrentNode.getLeft().getValue() != null){
-                    if (rowCurrentNode.getLeft().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getLeft().getValue();
+                    if (rowCurrentNode.getLeft().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getLeft();
                     }
                 }
 
                 if(rowCurrentNode.getRight() != null && rowCurrentNode.getRight().getValue() != null){
-                    if (rowCurrentNode.getRight().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getRight().getValue();
+                    if (rowCurrentNode.getRight().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getRight();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getValue() != null){
-                    if (rowCurrentNode.getUp().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getUp().getValue();
+                    if (rowCurrentNode.getUp().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getUp();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getValue() != null){
-                    if (rowCurrentNode.getDown().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getDown().getValue();
+                    if (rowCurrentNode.getDown().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getDown();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getLeft() != null && rowCurrentNode.getUp().getLeft().getValue() != null){
-                    if (rowCurrentNode.getUp().getLeft().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getUp().getLeft().getValue();
+                    if (rowCurrentNode.getUp().getLeft().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getUp().getLeft();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getRight() != null &&rowCurrentNode.getUp().getRight().getValue() != null){
-                    if (rowCurrentNode.getUp().getRight().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getUp().getRight().getValue();
+                    if (rowCurrentNode.getUp().getRight().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getUp().getRight();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getLeft() != null && rowCurrentNode.getDown().getLeft().getValue() != null){
-                    if (rowCurrentNode.getDown().getLeft().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getDown().getLeft().getValue();
+                    if (rowCurrentNode.getDown().getLeft().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getDown().getLeft();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getRight() != null && rowCurrentNode.getDown().getRight().getValue() != null){
-                    if (rowCurrentNode.getDown().getRight().compareTo(rowCurrentNode) == 1){
-                        maxValue = rowCurrentNode.getDown().getRight().getValue();
+                    if (rowCurrentNode.getDown().getRight().compareTo(maxValueNode) == 1){
+                        maxValueNode = rowCurrentNode.getDown().getRight();
                     }
                 }
                 
-                rowFilteredNode.setValue(maxValue);
+                rowFilteredNode.setValue(maxValueNode.getValue());
 
                 // Move to the next node in the current row
                 rowCurrentNode = rowCurrentNode.getRight();
