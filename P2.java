@@ -36,8 +36,7 @@ public class P2
         System.out.println("Testing max filter...");
         Image<Short> image = Utilities.loadImage(filename);
         System.out.println(image);
-        image.maxFilter();
-        System.out.println(image);
+        System.out.println(image.maxFilter());
     }
 
 

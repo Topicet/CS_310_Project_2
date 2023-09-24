@@ -143,7 +143,6 @@ public final class Node<T extends Comparable<T>> implements Comparable<Node<T>>
      */
     @Override
     public int compareTo(Node<T> comparisonNode){
-        System.out.println("CAlled");
         if (this.data == null && comparisonNode.data == null){
             return 0;
         }
@@ -156,6 +155,13 @@ public final class Node<T extends Comparable<T>> implements Comparable<Node<T>>
             return 1;
         }
 
-        return this.data.compareTo(comparisonNode.data);
+        int comp = this.data.compareTo(comparisonNode.data);
+        if(comp >= 1){
+            return 1;
+        }
+        if(comp == 0){
+            return 0;
+        }
+        return -1;
     }
 }

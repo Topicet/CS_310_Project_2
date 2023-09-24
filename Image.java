@@ -552,49 +552,49 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
                 T maxValue = rowCurrentNode.getValue();
 
                 if(rowCurrentNode.getLeft() != null && rowCurrentNode.getLeft().getValue() != null){
-                    if (rowCurrentNode.getLeft().compareTo(rowCurrentNode.getLeft()) == 1){
+                    if (rowCurrentNode.getLeft().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getLeft().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getRight() != null && rowCurrentNode.getRight().getValue() != null){
-                    if (rowCurrentNode.getRight().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getRight().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getRight().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getValue() != null){
-                    if (rowCurrentNode.getUp().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getUp().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getUp().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getValue() != null){
-                    if (rowCurrentNode.getDown().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getDown().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getDown().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getLeft() != null && rowCurrentNode.getUp().getLeft().getValue() != null){
-                    if (rowCurrentNode.getUp().getLeft().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getUp().getLeft().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getUp().getLeft().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getUp() != null && rowCurrentNode.getUp().getRight() != null &&rowCurrentNode.getUp().getRight().getValue() != null){
-                    if (rowCurrentNode.getUp().getRight().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getUp().getRight().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getUp().getRight().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getLeft() != null && rowCurrentNode.getDown().getLeft().getValue() != null){
-                    if (rowCurrentNode.getDown().getLeft().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getDown().getLeft().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getDown().getLeft().getValue();
                     }
                 }
 
                 if(rowCurrentNode.getDown() != null && rowCurrentNode.getDown().getRight() != null && rowCurrentNode.getDown().getRight().getValue() != null){
-                    if (rowCurrentNode.getDown().getRight().getValue().compareTo(maxValue) == 1){
+                    if (rowCurrentNode.getDown().getRight().compareTo(rowCurrentNode) == 1){
                         maxValue = rowCurrentNode.getDown().getRight().getValue();
                     }
                 }
