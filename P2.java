@@ -21,14 +21,15 @@ public class P2
     {
 
         //String filename = "removeColumnTest.pgm";
-        //String filename = "1x10.pgm";
-        String filename = "maxfilterTest.pgm";
+        String filename = "1x10.pgm";
+        //String filename = "maxfilterTest.pgm";
 
         //checkAddBorder(filename);
         //checkCompressionAllEqual();
         //checkAllColumnMethods(filename);
-        checkMaxFilter(filename);
+        //checkMaxFilter(filename);
 
+        checkRemoveBorder(filename);
 
     }
 
@@ -46,6 +47,15 @@ public class P2
         System.out.println(image);
         image.addBorder();
         System.out.println(image);
+    }
+
+        private static void checkRemoveBorder(String filename){
+            System.out.println("Removing border...");
+            Image<Short> image = Utilities.loadImage(filename);
+            System.out.println(image);
+            image.removeBorder();
+            image.removeBorder();
+            System.out.println(image);
     }
 
     private static void checkBasic(Image<Short> image){

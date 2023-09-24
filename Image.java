@@ -192,7 +192,7 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
      * @throws RuntimeException If the index is invalid.
      */
     public void removeColumn(int index) {
-        if(index < 0 || index >= width){
+        if(index < 0 || index > width - 1){
             throw new RuntimeException("Index for removal is invalid, must be between 0 and " + (this.width - 1));
         }
         if(this.width == 1){
@@ -259,7 +259,7 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
      * @throws RuntimeException If the index is invalid.
      */
     private void removeRow(int index) {
-        if (index < 0 || index > height) {
+        if (index < 0 || index > height - 1) {
             throw new RuntimeException("Index for deletion is invalid, must be between 0 and " + this.height);
         }
     
@@ -519,14 +519,14 @@ public class Image<T extends Comparable<T>> implements Iterable<Node<T>> {
      * @throws RuntimeException If the image's height or width is too small to support this operation.
      */
     public void removeBorder(){
-        if (height < 3 || width < 3) {
+        if (height <= 3 || width <= 3) {
             throw new RuntimeException("The image is too small to remove a border.");
         }
 
+        removeRow((this.height - 1));
         removeRow(0);
-        removeRow(this.height);
+        removeColumn((this.width - 1));
         removeColumn(0);
-        removeColumn(this.width);
     }
 
     /**

@@ -1,4 +1,4 @@
-John Demo
-jdemo2
-G00123123
+Nicholas Cofer
+ncofer
+G01253098
 Lecture: 002
