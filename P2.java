@@ -21,13 +21,25 @@ public class P2
     {
 
         //String filename = "removeColumnTest.pgm";
-        String filename = "1x10.pgm";
+        //String filename = "1x10.pgm";
+        String filename = "maxfilterTest.pgm";
 
-        checkAddBorder(filename);
+        //checkAddBorder(filename);
         //checkCompressionAllEqual();
-        checkAllColumnMethods(filename);
+        //checkAllColumnMethods(filename);
+        checkMaxFilter(filename);
+
 
     }
+
+    private static void checkMaxFilter(String filename){
+        System.out.println("Testing max filter...");
+        Image<Short> image = Utilities.loadImage(filename);
+        System.out.println(image);
+        image.maxFilter();
+        System.out.println(image);
+    }
+
 
     private static void checkAddBorder(String filename){
         System.out.println("Adding border...");

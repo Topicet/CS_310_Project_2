@@ -9,3 +9,4 @@ insertRowTest.pgm
 .gitignore
 compressionTestAllEqual.pgm
 removeColumnTest.pgm
+maxfilterTest.pgm

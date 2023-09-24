@@ -143,6 +143,7 @@ public final class Node<T extends Comparable<T>> implements Comparable<Node<T>>
      */
     @Override
     public int compareTo(Node<T> comparisonNode){
+        System.out.println("CAlled");
         if (this.data == null && comparisonNode.data == null){
             return 0;
         }
